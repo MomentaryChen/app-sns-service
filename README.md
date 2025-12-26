@@ -17,7 +17,7 @@
 3. **AWS帳戶** - 用於配置SNS服務
 4. **Java 17** 或更高版本
 
-## 配置步骤
+## 配置步驟
 
 ### 1. Firebase配置
 
@@ -48,28 +48,7 @@
 
 ### 4. 建構和執行
 
-#### 方法1：使用安裝腳本（推薦）
-
-**Windows使用者：**
-```cmd
-# 直接執行安裝腳本
-install_apk.bat
-```
-
-**Linux/Mac使用者：**
-```bash
-# 新增執行權限並執行
-chmod +x install_apk.sh
-./install_apk.sh
-```
-
-腳本會自動：
-- 檢查設備連接
-- 搜尋或建構APK
-- 安裝APK到設備
-- 可選擇立即啟動應用
-
-#### 方法2：使用Gradle命令
+#### 方法1：使用Gradle命令
 
 ```bash
 # 建構Debug APK
@@ -86,7 +65,7 @@ APK檔案位置：
 - Debug: `app/build/outputs/apk/debug/app-debug.apk`
 - Release: `app/build/outputs/apk/release/app-release.apk`
 
-#### 方法3：手動安裝
+#### 方法2：手動安裝
 
 1. **建構APK**
    ```bash
@@ -110,10 +89,10 @@ APK檔案位置：
 
 4. **啟動應用**
    ```bash
-   adb shell am start -n com.example.snspushdemo/.MainActivity
-   ```
+    adb shell am start -n com.example.snspushdemo/.MainActivity
+    ```
 
-#### 方法4：在Android Studio中
+#### 方法3：在Android Studio中
 
 1. 開啟專案
 2. 同步Gradle
@@ -135,7 +114,17 @@ APK檔案位置：
 3. **發送測試推送**
    - **使用 PowerShell 腳本（Windows 推薦）**：
      ```powershell
+     # 基本用法
      .\test_push.ps1 -PlatformArn "YOUR_PLATFORM_ARN" -FcmToken "YOUR_FCM_TOKEN"
+     
+     # 完整用法（所有參數）
+     .\test_push.ps1 `
+         -PlatformArn "arn:aws:sns:us-east-2:481061297250:app/GCM/optim-app-cloud-local-optim-app-sns" `
+         -FcmToken "YOUR_FCM_TOKEN" `
+         -AwsRegion "us-east-2" `
+         -MessageTitle "自訂標題" `
+         -MessageBody "自訂訊息內容" `
+         -MessageSubject "自訂主題"
      ```
    - 腳本會自動創建端點並發送推送通知
    - 發送推送範例：
@@ -218,7 +207,8 @@ app-sns-demo/
 ├── build.gradle
 ├── settings.gradle
 ├── test_push.ps1 (PowerShell 推送測試腳本)
-├── requirements.txt (Python 依賴)
+├── extract_arn.ps1 (提取ARN腳本)
+├── requirements.txt (Python 依賴，如需要)
 └── README.md
 ```
 
@@ -229,7 +219,7 @@ app-sns-demo/
 3. **通知權限**：Android 13+需要執行時請求通知權限
 4. **測試**：使用AWS SNS控制台或API發送測試推送通知
 
-#### 使用PowerShell脚本测试（Windows）
+#### 使用PowerShell腳本測試（Windows）
 
 PowerShell 腳本提供了完整的推送測試功能，支援參數化配置。
 
@@ -257,17 +247,20 @@ PowerShell 腳本提供了完整的推送測試功能，支援參數化配置。
 Get-Help .\test_push.ps1 -Full
 ```
 
-#### 使用Python腳本測試
-```bash
-# 安裝依賴
-pip install -r requirements.txt
+**使用範例：**
+```powershell
+# 基本用法（使用預設訊息）
+.\test_push.ps1 `
+    -PlatformArn "arn:aws:sns:us-east-2:481061297250:app/GCM/optim-app-cloud-local-optim-app-sns" `
+    -FcmToken "YOUR_FCM_TOKEN"
 
-# 創建端點並發送推送
-python test_push.py \
-  --platform-arn "arn:aws:sns:us-east-1:123456789012:app/GCM/MyApp" \
-  --token "YOUR_FCM_TOKEN" \
-  --title "測試標題" \
-  --body "測試訊息"
+# 自訂推送訊息
+.\test_push.ps1 `
+    -PlatformArn "arn:aws:sns:us-east-2:481061297250:app/GCM/optim-app-cloud-local-optim-app-sns" `
+    -FcmToken "YOUR_FCM_TOKEN" `
+    -MessageTitle "重要通知" `
+    -MessageBody "這是一條重要的推送訊息" `
+    -MessageSubject "系統通知"
 ```
 
 ## 應用介面展示
@@ -296,7 +289,8 @@ python test_push.py \
 - 檢查通知權限是否已授予
 - 驗證AWS SNS端點ARN是否正確
 - 查看Logcat日誌獲取詳細錯誤資訊
-- 參考 [TESTING_GUIDE.md](TESTING_GUIDE.md) 進行除錯
+- 使用 `test_push.ps1` 腳本測試推送功能
+- 確認FCM Token是否有效且未過期
 
 ## 许可证
 
