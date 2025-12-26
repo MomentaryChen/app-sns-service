@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.snspushdemo.app-mergeDebugResources-3:/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "D:\\tools\\gradle-6.8.3\\caches\\transforms-4\\ba543e1e352a8c0340f7927f95b746c3\\transformed\\appcompat-1.6.1\\res\\values-v18\\values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                }
+            ]
+        }
+    ]
+}

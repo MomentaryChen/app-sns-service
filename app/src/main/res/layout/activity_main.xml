@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- 顶部配置区域 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AWS SNS 推送通知示範"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Token狀態 -->
+            <TextView
+                android:id="@+id/tvTokenStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="點擊按鈕獲取FCM Token"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Token值 -->
+            <TextView
+                android:id="@+id/tvTokenValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:background="@android:color/darker_gray"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
+
+            <!-- Token資訊 -->
+            <TextView
+                android:id="@+id/tvTokenInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 按鈕組 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGetToken"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="獲取FCM Token"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCopyToken"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="複製Token到剪貼簿"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegisterDevice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="註冊設備到AWS SNS"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 註冊狀態 -->
+            <TextView
+                android:id="@+id/tvRegisterStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 通知資料 -->
+            <TextView
+                android:id="@+id/tvNotificationData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                android:background="@android:color/darker_gray"
+                android:padding="8dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 分隔线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginVertical="8dp" />
+
+    <!-- 消息列表区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- 訊息列表標題和操作 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="推送訊息歷史"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMessageCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 條"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClearMessages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清空"
+                android:textSize="12sp"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </LinearLayout>
+
+        <!-- 訊息列表 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMessages"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:padding="4dp"
+            tools:listitem="@layout/item_push_message" />
+
+        <!-- 空訊息提示 -->
+        <TextView
+            android:id="@+id/tvEmptyMessages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="暫無訊息\n\n接收到的推送訊息將顯示在這裡"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\tools\\gradle-6.8.3\\daemon\\8.7\\com.example.snspushdemo.app-mergeDebugResources-4:\\layout\\activity_main.xml",
+        "source": "D:\\tools\\gradle-6.8.3\\daemon\\8.7\\com.example.snspushdemo.app-main-7:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.example.snspushdemo.app-mergeDebugResources-4:/layout/activity_main.xml",
+        "source": "com.example.snspushdemo.app-main-7:/layout/activity_main.xml"
+    },
+    {
+        "merged": "D:\\tools\\gradle-6.8.3\\daemon\\8.7\\com.example.snspushdemo.app-mergeDebugResources-4:\\layout\\item_push_message.xml",
+        "source": "D:\\tools\\gradle-6.8.3\\daemon\\8.7\\com.example.snspushdemo.app-main-7:\\layout\\item_push_message.xml"
+    },
+    {
+        "merged": "com.example.snspushdemo.app-mergeDebugResources-4:/layout/item_push_message.xml",
+        "source": "com.example.snspushdemo.app-main-7:/layout/item_push_message.xml"
+    }
+]
